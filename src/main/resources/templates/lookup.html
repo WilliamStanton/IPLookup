@@ -75,10 +75,8 @@
             <h2>Look up another IP Address</h2>
             <p>To lookup another IP Address, enter the IP below</p>
         </div>
-        <form action="/iplookup" method="post">
-            <input type="text" name="ip">
-            <button type="submit">Go!</button>
-        </form>
+        <input type="text" name="ip">
+        <button onclick="location.href = '/iplookup/' + document.querySelector('body > div:nth-child(3) > input').value;">Go!</button>
     </div>
 </body>
 </html>

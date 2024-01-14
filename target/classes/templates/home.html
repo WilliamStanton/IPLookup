@@ -69,10 +69,8 @@
         <div class="message service">
             <h2>Lookup Service</h2>
             <p>To lookup any IP Address, enter the IP below</p>
-            <form action="/iplookup" method="post">
-                <input type="text" name="ip">
-                <button type="submit">Go!</button>
-            </form>
+            <input type="text" name="ip">
+            <button onclick="location.href = '/iplookup/' + document.querySelector('body > div.messages > div.message.service > input').value;">Go!</button>
         </div>
         <div class="message code">
             <h2>Full Transparency</h2>

@@ -2,21 +2,22 @@ package iplookup.Controller;
 
 import iplookup.Model.IpData;
 import iplookup.Service.IpLookupService;
+import iplookup.Service.RemoteAddrService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
     // Initialize Service
     private final IpLookupService ipLookupService;
+    private final RemoteAddrService remoteAddrService;
 
-    public MainController(IpLookupService ipLookupService) {
+    public MainController(IpLookupService ipLookupService, RemoteAddrService remoteAddrService) {
         this.ipLookupService = ipLookupService;
+        this.remoteAddrService = remoteAddrService;
     }
 
     /**
@@ -29,24 +30,13 @@ public class MainController {
     @GetMapping("/")
     public String home(HttpServletRequest request, Model model) {
         // Obtain client IP Address
-        var ip = request.getRemoteAddr();
+        var ip = remoteAddrService.getClientIp(request);
 
         // Send client their data
         model.addAttribute("clientData", ipLookupService.lookUp(ip));
 
         // Return home page
         return "home.html";
-    }
-
-    /**
-     * The lookup POST method sends the IP to the server to lookup
-     * and redirects the client to the proper page
-     * @param ip requested IP lookup
-     * @return the proper lookup page
-     */
-    @PostMapping("/iplookup")
-    public String lookup(@RequestParam String ip) {
-        return "redirect:/iplookup/" + ip;
     }
 
     /**
