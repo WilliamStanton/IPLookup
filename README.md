@@ -17,4 +17,9 @@ Ip2Location API
 ```api_key=xxxx```
 3) Set desired PORT in application.properties (default 81):
 ```server.port:81```
-4) Run project!
+4) Run project:
+```
+mvn clean package
+mvn exec:java -Dexec.mainClass="iplookup.IpLookupApplication"
+```
+  
