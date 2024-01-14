@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <title>IP Lookup Service</title>
+    <meta name="description" content="William Stanton - IP Lookup Service">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name=”robots” content="noindex, nofollow">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Style/CSS -->
+    <link rel="stylesheet" href="/main.css" media="print" onload="this.media='all'">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar-->
+    <div class="navbar">
+        <div class="name">
+            <a class="title" href="/"><p>IP Lookup Service</p></a>
+            <a class="author" href="https://williamstanton.net"><p>By William Stanton</p></a>
+        </div>
+        <div class="links">
+            <a href="/">Home</a>
+            <a href="mailto:mail@williamstanton.net">Contact</a>
+        </div>
+    </div>
+
+    <!-- IP Lookup -->
+    <div class="section">
+        <div class="sectionHeader">
+            <h2>IP Lookup: <span th:text="${ipData.ip}"></span></h2>
+        </div>
+        <div class="dataLookup">
+            <div class="data">
+                <h3>📍 Location</h3>
+                <p><span th:text="${ipData.city_name}"></span> (<span th:text="${ipData.zip_code}"></span>), <span th:text="${ipData.region_name}"></span>, <span th:text="${ipData.country_name}"></span></p>
+            </div>
+
+            <div class="data">
+                <h3>📌 Coordinance</h3>
+                <p><span th:text="${ipData.latitude}"></span>, <span th:text="${ipData.longitude}"></span></p>
+            </div>
+
+            <div class="data">
+                <h3>🌐 Service Provider</h3>
+                <p><span th:text="${ipData.as}"></span></p>
+            </div>
+
+            <div class="data">
+                <h3>🥷 VPN</h3>
+                <p><span th:text="${ipData.is_proxy} ? 'Connection Protected 🛡️' : '⚠️ Unprotected Connection'"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lookup -->
+    <div class="section">
+        <div class="sectionHeader">
+            <h2>Look up another IP Address</h2>
+            <p>To lookup another IP Address, enter the IP below</p>
+        </div>
+        <form action="/iplookup" method="post">
+            <input type="text" name="ip">
+            <button type="submit">Go!</button>
+        </form>
+    </div>
+</body>
+</html>
