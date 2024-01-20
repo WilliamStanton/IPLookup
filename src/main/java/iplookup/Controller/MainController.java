@@ -1,8 +1,10 @@
 package iplookup.Controller;
 
-import iplookup.Model.IpData;
+import iplookup.Model.IpAddressData;
+import iplookup.Model.WhoisData;
 import iplookup.Service.IpLookupService;
 import iplookup.Service.RemoteAddrService;
+import iplookup.Service.WhoisLookupService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class MainController {
     // Initialize Service
     private final IpLookupService ipLookupService;
+    private final WhoisLookupService whoisLookupService;
     private final RemoteAddrService remoteAddrService;
 
-    public MainController(IpLookupService ipLookupService, RemoteAddrService remoteAddrService) {
+    public MainController(IpLookupService ipLookupService, WhoisLookupService whoisLookupService, RemoteAddrService remoteAddrService) {
         this.ipLookupService = ipLookupService;
+        this.whoisLookupService = whoisLookupService;
         this.remoteAddrService = remoteAddrService;
     }
 
@@ -49,12 +53,29 @@ public class MainController {
     @GetMapping ("/iplookup/{ip}")
     public String lookupIp(@PathVariable String ip, Model model) {
         // Lookup IP
-        IpData data = ipLookupService.lookUp(ip);
+        IpAddressData data = ipLookupService.lookUp(ip);
 
         // Send requested lookup data
         model.addAttribute("ipData", data);
 
         // Return lookup page
         return "lookup.html";
+    }
+
+    @GetMapping("/whois/{domain}")
+    public String lookupDomain(@PathVariable String domain, Model model) {
+        // Lookup Domain
+        WhoisData data = whoisLookupService.lookUp(domain);
+
+        // Send requested whois data
+        model.addAttribute("admin", data.getAdmin());
+        model.addAttribute("admin", data.getBilling());
+        model.addAttribute("admin", data.getRegistrant());
+        model.addAttribute("admin", data.getRegistrar());
+
+
+
+        // Return whois page
+        return "whois.html";
     }
 }
