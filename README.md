@@ -1,14 +1,18 @@
 # **IP Lookup Service by William Stanton**
 The IP Lookup Service is my first Web Application which aims to serve users with 
-information pertaining to their IP Address as well as any other IP Address.
+information pertaining to their IP Address as well as any other IP Address, featuring a REST API.
 
 ## **Technologies Utilized**
 ```
-Java
-Spring Framework
-Thymeleaf
-Html/Css
-Ip2Location API
+Java:
+- Spring Framework:
+  - Spring Boot
+  - Spring MVC (Web/REST)
+  - Spring Cloud (Feign Client)
+
+HTML:
+- HTML/CSS
+  - Thymeleaf
 ```
 
 ## Setup
