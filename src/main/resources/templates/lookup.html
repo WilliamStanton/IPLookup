@@ -53,7 +53,7 @@
             </div>
 
             <div class="data">
-                <h3>📌 Coordinance</h3>
+                <h3>📌 Coordinates</h3>
                 <p><span th:text="${ipData.latitude}"></span>, <span th:text="${ipData.longitude}"></span></p>
             </div>
 
@@ -75,8 +75,8 @@
             <h2>Look up another IP Address</h2>
             <p>To lookup another IP Address, enter the IP below</p>
         </div>
-        <input type="text" name="ip">
-        <button onclick="location.href = '/iplookup/' + document.querySelector('body > div:nth-child(3) > input').value;">Go!</button>
+        <input type="text" name="ip" id="ip" required>
+        <button onclick="location.href = '/iplookup/' + document.getElementById('ip').value;">Go!</button>
     </div>
 </body>
 </html>

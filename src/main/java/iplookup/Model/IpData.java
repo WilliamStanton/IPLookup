@@ -3,8 +3,9 @@ package iplookup.Model;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component
-@Scope("prototype")
+/**
+ * IpData Model
+ */
 public class IpData {
     // Declare Fields
     private String ip;
@@ -211,4 +212,6 @@ public class IpData {
     public void setIs_proxy(Boolean is_proxy) {
         this.is_proxy = is_proxy;
     }
+
+
 }

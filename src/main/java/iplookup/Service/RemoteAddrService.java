@@ -3,11 +3,13 @@ package iplookup.Service;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
+/**
+ * Ensures that IP Address is accurately processed via Cloudflare CDN
+ */
 @Service
 public class RemoteAddrService {
     /**
-     * The getClientIp method gets the client IP Address from either cloudflare headers or
-     * default headers
+     * Obtains the client IP Address from relevant headers (either cloudflare headers or default headers)
      * @param request HTTP Request
      * @return client IP Address
      */
